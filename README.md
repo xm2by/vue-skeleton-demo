@@ -14,3 +14,5 @@ npm run dev
 ```
 npm run build
 ```
+
+> 每次运行完`npm run dev`后再次启动时需手动将public/index.html文件还原
