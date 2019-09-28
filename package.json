@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "commit": "git-cz",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve:client": "vue-cli-service serve",
+    "serve:server": "npm run build:server && node skeleton.js",
+    "build:client": "vue-cli-service build",
+    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --mode server",
+    "build": "npm run build:server && move dist\\vue-ssr-server-bundle.json bundle && npm run build:client && move bundle dist\\vue-ssr-server-bundle.json",
+    "lint": "vue-cli-service lint",
+    "dev": "npm run serve:server && npm run serve:client"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -20,11 +24,16 @@
     "@vue/cli-service": "^3.11.0",
     "babel-eslint": "^10.0.1",
     "commitizen": "^4.0.3",
+    "cross-env": "^6.0.0",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "husky": "^3.0.7",
-    "vue-template-compiler": "^2.6.10"
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "vue-server-renderer": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-node-externals": "^1.7.2"
   },
   "eslintConfig": {
     "root": true,
